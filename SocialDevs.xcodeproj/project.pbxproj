@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2ECED179786F3D31EEA54551 /* Pods_SocialDevs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D5435EABFAEDFC1A990E65 /* Pods_SocialDevs.framework */; };
+		DE85AD241E1B62AA007ACC41 /* SGB Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DE85AD231E1B62AA007ACC41 /* SGB Logo.jpg */; };
 		DEFF3FA11E1B12020021E0C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFF3FA01E1B12020021E0C5 /* AppDelegate.swift */; };
 		DEFF3FA31E1B12020021E0C5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFF3FA21E1B12020021E0C5 /* LoginVC.swift */; };
 		DEFF3FA61E1B12020021E0C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEFF3FA41E1B12020021E0C5 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		B4853ADF57B1CE5D0E828CCA /* Pods-SocialDevs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialDevs.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocialDevs/Pods-SocialDevs.release.xcconfig"; sourceTree = "<group>"; };
 		C205FC982CC4757383B89ACC /* Pods-SocialDevs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialDevs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialDevs/Pods-SocialDevs.debug.xcconfig"; sourceTree = "<group>"; };
+		DE85AD231E1B62AA007ACC41 /* SGB Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "SGB Logo.jpg"; sourceTree = "<group>"; };
 		DEFF3F9D1E1B12020021E0C5 /* SocialDevs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialDevs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFF3FA01E1B12020021E0C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEFF3FA21E1B12020021E0C5 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				DEFF3FA91E1B12020021E0C5 /* LaunchScreen.storyboard */,
 				DEFF3FA71E1B12020021E0C5 /* Assets.xcassets */,
 				DEFF3FAC1E1B12020021E0C5 /* Info.plist */,
+				DE85AD231E1B62AA007ACC41 /* SGB Logo.jpg */,
 				DEFF3FB21E1B12290021E0C5 /* GoogleService-Info.plist */,
 			);
 			path = SocialDevs;
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEFF3FB31E1B12290021E0C5 /* GoogleService-Info.plist in Resources */,
+				DE85AD241E1B62AA007ACC41 /* SGB Logo.jpg in Resources */,
 				DEFF3FAB1E1B12020021E0C5 /* LaunchScreen.storyboard in Resources */,
 				DEFF3FA81E1B12020021E0C5 /* Assets.xcassets in Resources */,
 				DEFF3FA61E1B12020021E0C5 /* Main.storyboard in Resources */,
