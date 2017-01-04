@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		2ECED179786F3D31EEA54551 /* Pods_SocialDevs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D5435EABFAEDFC1A990E65 /* Pods_SocialDevs.framework */; };
 		DE85AD241E1B62AA007ACC41 /* SGB Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DE85AD231E1B62AA007ACC41 /* SGB Logo.jpg */; };
+		DEB780551E1C9CDE00E0DC83 /* Jitterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB780541E1C9CDE00E0DC83 /* Jitterable.swift */; };
+		DEB780571E1CA7E800E0DC83 /* Flashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB780561E1CA7E800E0DC83 /* Flashable.swift */; };
+		DEB7805B1E1CB57D00E0DC83 /* ShadowAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7805A1E1CB57D00E0DC83 /* ShadowAdder.swift */; };
+		DEB7805E1E1CB5EA00E0DC83 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7805D1E1CB5EA00E0DC83 /* Constants.swift */; };
+		DEB780601E1CB9F100E0DC83 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7805F1E1CB9F100E0DC83 /* RoundedButton.swift */; };
+		DEB780621E1CC02B00E0DC83 /* TextFieldExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB780611E1CC02B00E0DC83 /* TextFieldExtras.swift */; };
 		DEFF3FA11E1B12020021E0C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFF3FA01E1B12020021E0C5 /* AppDelegate.swift */; };
 		DEFF3FA31E1B12020021E0C5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFF3FA21E1B12020021E0C5 /* LoginVC.swift */; };
 		DEFF3FA61E1B12020021E0C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEFF3FA41E1B12020021E0C5 /* Main.storyboard */; };
@@ -21,6 +27,12 @@
 		B4853ADF57B1CE5D0E828CCA /* Pods-SocialDevs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialDevs.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocialDevs/Pods-SocialDevs.release.xcconfig"; sourceTree = "<group>"; };
 		C205FC982CC4757383B89ACC /* Pods-SocialDevs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialDevs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialDevs/Pods-SocialDevs.debug.xcconfig"; sourceTree = "<group>"; };
 		DE85AD231E1B62AA007ACC41 /* SGB Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "SGB Logo.jpg"; sourceTree = "<group>"; };
+		DEB780541E1C9CDE00E0DC83 /* Jitterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jitterable.swift; sourceTree = "<group>"; };
+		DEB780561E1CA7E800E0DC83 /* Flashable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flashable.swift; sourceTree = "<group>"; };
+		DEB7805A1E1CB57D00E0DC83 /* ShadowAdder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowAdder.swift; sourceTree = "<group>"; };
+		DEB7805D1E1CB5EA00E0DC83 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DEB7805F1E1CB9F100E0DC83 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		DEB780611E1CC02B00E0DC83 /* TextFieldExtras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldExtras.swift; sourceTree = "<group>"; };
 		DEFF3F9D1E1B12020021E0C5 /* SocialDevs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialDevs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFF3FA01E1B12020021E0C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEFF3FA21E1B12020021E0C5 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -61,6 +73,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DEB780531E1C8AAA00E0DC83 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DEB780541E1C9CDE00E0DC83 /* Jitterable.swift */,
+				DEB780561E1CA7E800E0DC83 /* Flashable.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		DEB7805C1E1CB5AE00E0DC83 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DEB7805D1E1CB5EA00E0DC83 /* Constants.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		DEFF3F941E1B12010021E0C5 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +111,8 @@
 		DEFF3F9F1E1B12020021E0C5 /* SocialDevs */ = {
 			isa = PBXGroup;
 			children = (
+				DEB7805C1E1CB5AE00E0DC83 /* Utilities */,
+				DEB780531E1C8AAA00E0DC83 /* Protocols */,
 				DEFF3FB41E1B17700021E0C5 /* Model */,
 				DEFF3FB51E1B17760021E0C5 /* View */,
 				DEFF3FB61E1B177C0021E0C5 /* Controller */,
@@ -106,6 +137,9 @@
 		DEFF3FB51E1B17760021E0C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DEB7805A1E1CB57D00E0DC83 /* ShadowAdder.swift */,
+				DEB7805F1E1CB9F100E0DC83 /* RoundedButton.swift */,
+				DEB780611E1CC02B00E0DC83 /* TextFieldExtras.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -244,8 +278,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEB780621E1CC02B00E0DC83 /* TextFieldExtras.swift in Sources */,
+				DEB7805B1E1CB57D00E0DC83 /* ShadowAdder.swift in Sources */,
+				DEB780571E1CA7E800E0DC83 /* Flashable.swift in Sources */,
+				DEB780551E1C9CDE00E0DC83 /* Jitterable.swift in Sources */,
 				DEFF3FA31E1B12020021E0C5 /* LoginVC.swift in Sources */,
+				DEB780601E1CB9F100E0DC83 /* RoundedButton.swift in Sources */,
 				DEFF3FA11E1B12020021E0C5 /* AppDelegate.swift in Sources */,
+				DEB7805E1E1CB5EA00E0DC83 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
