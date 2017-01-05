@@ -13,6 +13,7 @@ protocol Jitterable {}
 extension Jitterable where Self: UIView {
 
     func jitter() {
+        
         let animate = CABasicAnimation(keyPath: "position")
         animate.duration = 0.05
         animate.repeatCount = 5

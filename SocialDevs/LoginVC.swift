@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FBSDKCoreKit
+import FirebaseAuth
+import Firebase
 
 class dataEntryText: UITextField, Jitterable, Flashable {
 }
@@ -34,6 +38,21 @@ class LoginVC: UIViewController {
     }
     
    
+    @IBAction func facbeookBtnPressed(_ sender: Any) {
+        let fbLogin = FBSDKLoginManager()
+        fbLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+            if error != nil {
+                print("SGB: Unable to auth with FB with \(error)")
+            } else if result?.isCancelled == true {
+                print("SGB: User cancelled FB login auth")
+            } else {
+                print("SGB: successful FB auth")
+                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                self.firebaseAuth(credential)
+            }
+            
+        }
+    }
 
     @IBAction func loginBtnPressed(_ sender: UIButton) {
 
@@ -41,6 +60,16 @@ class LoginVC: UIViewController {
         loginBtn.jitter()
     
         
+    }
+    
+    func firebaseAuth(_ credential: FIRAuthCredential) {
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+            if error != nil {
+                print("SGB: Unable to auth with Firebase login with \(error)")
+            } else {
+                print("SGB: Successful auth with Firebase")
+            }
+        })
     }
     
 }
