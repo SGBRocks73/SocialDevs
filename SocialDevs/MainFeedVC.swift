@@ -18,9 +18,4 @@ class MainFeedVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func signOutBtnPressed(_ sender: Any) {
-        KeychainWrapper.standard.removeObject(forKey: key_userID)
-        try! FIRAuth.auth()?.signOut()
-        dismiss(animated: true, completion: nil)
-    }
 }

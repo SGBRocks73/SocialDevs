@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2ECED179786F3D31EEA54551 /* Pods_SocialDevs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D5435EABFAEDFC1A990E65 /* Pods_SocialDevs.framework */; };
 		DE40C3F61E1DFE9A00D8B404 /* MainFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40C3F51E1DFE9A00D8B404 /* MainFeedVC.swift */; };
+		DE40C3F81E1E22B800D8B404 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40C3F71E1E22B800D8B404 /* CircleImage.swift */; };
 		DE85AD241E1B62AA007ACC41 /* SGB Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DE85AD231E1B62AA007ACC41 /* SGB Logo.jpg */; };
 		DEB780551E1C9CDE00E0DC83 /* Jitterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB780541E1C9CDE00E0DC83 /* Jitterable.swift */; };
 		DEB780571E1CA7E800E0DC83 /* Flashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB780561E1CA7E800E0DC83 /* Flashable.swift */; };
@@ -28,6 +29,7 @@
 		B4853ADF57B1CE5D0E828CCA /* Pods-SocialDevs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialDevs.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocialDevs/Pods-SocialDevs.release.xcconfig"; sourceTree = "<group>"; };
 		C205FC982CC4757383B89ACC /* Pods-SocialDevs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialDevs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocialDevs/Pods-SocialDevs.debug.xcconfig"; sourceTree = "<group>"; };
 		DE40C3F51E1DFE9A00D8B404 /* MainFeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFeedVC.swift; sourceTree = "<group>"; };
+		DE40C3F71E1E22B800D8B404 /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		DE85AD231E1B62AA007ACC41 /* SGB Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "SGB Logo.jpg"; sourceTree = "<group>"; };
 		DEB780541E1C9CDE00E0DC83 /* Jitterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jitterable.swift; sourceTree = "<group>"; };
 		DEB780561E1CA7E800E0DC83 /* Flashable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flashable.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				DEB7805A1E1CB57D00E0DC83 /* ShadowAdder.swift */,
 				DEB7805F1E1CB9F100E0DC83 /* RoundedButton.swift */,
 				DEB780611E1CC02B00E0DC83 /* TextFieldExtras.swift */,
+				DE40C3F71E1E22B800D8B404 /* CircleImage.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				DEB780601E1CB9F100E0DC83 /* RoundedButton.swift in Sources */,
 				DEFF3FA11E1B12020021E0C5 /* AppDelegate.swift in Sources */,
 				DEB7805E1E1CB5EA00E0DC83 /* Constants.swift in Sources */,
+				DE40C3F81E1E22B800D8B404 /* CircleImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
