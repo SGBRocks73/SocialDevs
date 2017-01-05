@@ -1,15 +1,15 @@
 //
-//  ShadowAdder.swift
+//  HeaderSahdow.swift
 //  SocialDevs
 //
-//  Created by Steve Baker on 4/1/17.
+//  Created by Steve Baker on 6/1/17.
 //  Copyright © 2017 Steve Baker. All rights reserved.
 //
 
 import UIKit
 
-class ShadowAdder: UIView {
-
+class HeaderSahdow: UIView {
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -17,8 +17,6 @@ class ShadowAdder: UIView {
         layer.shadowOpacity = 0.8
         layer.shadowRadius = 5.0
         layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        layer.cornerRadius = 3.5
-        
+
     }
-   
 }
