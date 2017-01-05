@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import FirebaseAuth
 import Firebase
+import SwiftKeychainWrapper
 
 class dataEntryText: UITextField, Jitterable, Flashable {
 }
@@ -34,7 +35,17 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+       
+        if let _ = KeychainWrapper.standard.string(forKey: key_userID) {
+            performSegue(withIdentifier: "MainFeedVC", sender: nil)
+
+        }
     }
     
    
@@ -70,12 +81,18 @@ class LoginVC: UIViewController {
             FIRAuth.auth()?.signIn(withEmail: email!, password: pword!, completion: { (user, error) in
                 if error == nil {
                     print("SGB: User successful login on Firebase with email")
+                    if let user = user {
+                        self.finishSignIn(id: user.uid)
+                    }
                 } else {
                     FIRAuth.auth()?.createUser(withEmail: email!, password: pword!, completion: { (user, error) in
                         if error != nil {
                             print("SGB: Unable to auth with Firebase using email")
                         } else {
                             print("SGB: New user login to Firebase with email GTG")
+                            if let user = user {
+                                self.finishSignIn(id: user.uid)
+                            }
                         }
                         
                     })
@@ -91,8 +108,17 @@ class LoginVC: UIViewController {
                 print("SGB: Unable to auth with Firebase login with \(error)")
             } else {
                 print("SGB: Successful auth with Firebase")
+                if let user = user {
+                    self.finishSignIn(id: user.uid)
+                }
             }
         })
+    }
+    
+    func finishSignIn(id: String) {
+        KeychainWrapper.standard.set(id, forKey: key_userID)
+        performSegue(withIdentifier: "MainFeedVC", sender: nil)
+        print("SGB: Data saved to keychain")
     }
     
 }
