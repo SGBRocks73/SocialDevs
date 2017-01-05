@@ -39,6 +39,7 @@ class LoginVC: UIViewController {
     
    
     @IBAction func facbeookBtnPressed(_ sender: Any) {
+        
         let fbLogin = FBSDKLoginManager()
         fbLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
             if error != nil {
@@ -55,10 +56,32 @@ class LoginVC: UIViewController {
     }
 
     @IBAction func loginBtnPressed(_ sender: UIButton) {
-
+        
+        let email = emailTextField.text
+        let pword = passwordTextField.text
+        
+        if email == "" || pword == "" {
+            
         warningLbl.flasingText()
         loginBtn.jitter()
-    
+            
+        } else {
+           
+            FIRAuth.auth()?.signIn(withEmail: email!, password: pword!, completion: { (user, error) in
+                if error == nil {
+                    print("SGB: User successful login on Firebase with email")
+                } else {
+                    FIRAuth.auth()?.createUser(withEmail: email!, password: pword!, completion: { (user, error) in
+                        if error != nil {
+                            print("SGB: Unable to auth with Firebase using email")
+                        } else {
+                            print("SGB: New user login to Firebase with email GTG")
+                        }
+                        
+                    })
+                }
+            })
+        }
         
     }
     
