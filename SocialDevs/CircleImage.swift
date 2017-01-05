@@ -21,9 +21,12 @@ class CircleImage: UIImageView {
     }
     
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        layer.cornerRadius = self.frame.width / 2
+    override func layoutSubviews() {
         
+        super.layoutSubviews()
+        layer.cornerRadius = self.frame.width / 2
     }
+    
+        
+    
 }
