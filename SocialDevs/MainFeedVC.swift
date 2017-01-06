@@ -50,7 +50,14 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        return tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as UITableViewCell
+        let postData = posts[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
+            cell.configureCell(post: postData)
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+     
     }
     
     
