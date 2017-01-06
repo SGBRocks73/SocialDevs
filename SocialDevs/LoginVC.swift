@@ -82,7 +82,8 @@ class LoginVC: UIViewController {
                 if error == nil {
                     print("SGB: User successful login on Firebase with email")
                     if let user = user {
-                        self.finishSignIn(id: user.uid)
+                        let userDataSignIn = ["provider": user.providerID]
+                        self.finishSignIn(id: user.uid, userData: userDataSignIn)
                     }
                 } else {
                     FIRAuth.auth()?.createUser(withEmail: email!, password: pword!, completion: { (user, error) in
@@ -91,7 +92,8 @@ class LoginVC: UIViewController {
                         } else {
                             print("SGB: New user login to Firebase with email GTG")
                             if let user = user {
-                                self.finishSignIn(id: user.uid)
+                                let userDataSignIn = ["provider": user.providerID]
+                                self.finishSignIn(id: user.uid, userData: userDataSignIn)
                             }
                         }
                         
@@ -109,13 +111,15 @@ class LoginVC: UIViewController {
             } else {
                 print("SGB: Successful auth with Firebase")
                 if let user = user {
-                    self.finishSignIn(id: user.uid)
+                    let userDataSignIn = ["provider": credential.provider]
+                    self.finishSignIn(id: user.uid, userData: userDataSignIn)
                 }
             }
         })
     }
     
-    func finishSignIn(id: String) {
+    func finishSignIn(id: String, userData: Dictionary<String, String>) {
+        DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
         KeychainWrapper.standard.set(id, forKey: key_userID)
         performSegue(withIdentifier: "MainFeedVC", sender: nil)
         print("SGB: Data saved to keychain")
