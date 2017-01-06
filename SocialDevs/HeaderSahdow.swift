@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HeaderSahdow: UIView {
+class HeaderShadow: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
