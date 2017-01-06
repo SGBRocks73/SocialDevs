@@ -20,6 +20,7 @@
 		DEB780601E1CB9F100E0DC83 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB7805F1E1CB9F100E0DC83 /* RoundedButton.swift */; };
 		DEB780621E1CC02B00E0DC83 /* TextFieldExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB780611E1CC02B00E0DC83 /* TextFieldExtras.swift */; };
 		DEC554781E1F4A9E0094AF82 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC554771E1F4A9E0094AF82 /* DataService.swift */; };
+		DEC5547A1E1F72430094AF82 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC554791E1F72430094AF82 /* Post.swift */; };
 		DEFF3FA11E1B12020021E0C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFF3FA01E1B12020021E0C5 /* AppDelegate.swift */; };
 		DEFF3FA31E1B12020021E0C5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFF3FA21E1B12020021E0C5 /* LoginVC.swift */; };
 		DEFF3FA61E1B12020021E0C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEFF3FA41E1B12020021E0C5 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		DEB7805F1E1CB9F100E0DC83 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		DEB780611E1CC02B00E0DC83 /* TextFieldExtras.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldExtras.swift; sourceTree = "<group>"; };
 		DEC554771E1F4A9E0094AF82 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		DEC554791E1F72430094AF82 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DEFF3F9D1E1B12020021E0C5 /* SocialDevs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialDevs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFF3FA01E1B12020021E0C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEFF3FA21E1B12020021E0C5 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 		DEFF3FB41E1B17700021E0C5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DEC554791E1F72430094AF82 /* Post.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				DEB7805B1E1CB57D00E0DC83 /* ShadowAdder.swift in Sources */,
 				DE40C3F61E1DFE9A00D8B404 /* MainFeedVC.swift in Sources */,
 				DEB780571E1CA7E800E0DC83 /* Flashable.swift in Sources */,
+				DEC5547A1E1F72430094AF82 /* Post.swift in Sources */,
 				DEB780551E1C9CDE00E0DC83 /* Jitterable.swift in Sources */,
 				DEFF3FA31E1B12020021E0C5 /* LoginVC.swift in Sources */,
 				DEB780601E1CB9F100E0DC83 /* RoundedButton.swift in Sources */,
