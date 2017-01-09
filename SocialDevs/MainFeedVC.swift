@@ -10,17 +10,21 @@ import UIKit
 import SwiftKeychainWrapper
 import Firebase
 
-class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [Post]()
+    var imagePicker: UIImagePickerController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             print(snapshot.value!)
@@ -45,7 +49,6 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
-        //add more code here
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,6 +61,10 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
      
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        imagePicker.dismiss(animated: true, completion: nil)
     }
     
     
