@@ -13,6 +13,7 @@ import Firebase
 class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addImage: CircleImage!
     
     var posts = [Post]()
     var imagePicker: UIImagePickerController!
@@ -64,7 +65,18 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+       
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            addImage.image = image
+        } else {
+            print("SGB: No valid image added")
+        }
+        
         imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func imagePickerPressed(_ sender: Any) {
+        present(imagePicker, animated: true, completion: nil)
     }
     
     
