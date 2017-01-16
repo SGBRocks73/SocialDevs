@@ -35,7 +35,7 @@ class PostCell: UITableViewCell {
             self.postPhoto.image = img
         } else {
             let ref = FIRStorage.storage().reference(forURL: post.imageUrl)
-            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+            ref.data(withMaxSize: 4 * 1024 * 1024, completion: { (data, error) in
                 if error != nil {
                     print("SGB: Unable to download image from FIR Storage \(error)")
                 } else {

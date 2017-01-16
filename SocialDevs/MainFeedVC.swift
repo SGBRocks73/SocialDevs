@@ -14,9 +14,11 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addImage: CircleImage!
+    @IBOutlet weak var captionField: TextFieldExtras!
     
     var posts = [Post]()
     var imagePicker: UIImagePickerController!
+    var imageSelected = false
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     override func viewDidLoad() {
@@ -78,6 +80,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
        
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             addImage.image = image
+            imageSelected = true
         } else {
             print("SGB: No valid image added")
         }
@@ -89,6 +92,33 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func postBtnPressed(_ sender: Any) {
+        guard let caption = captionField.text, caption != "" else {
+            //using the guard statement - if it is NOT true do the code
+            print("SGB: Caption must be enetered")
+            return
+        }
+        guard let img = addImage.image, imageSelected == true else {
+            print("SGB: Image must be selected")
+            return
+        }
+        
+        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+            
+            let imgUid = NSUUID().uuidString
+            let metaData = FIRStorageMetadata()
+            metaData.contentType = "image/jpeg"
+            DataService.ds.REF_POSTS_IMG.child(imgUid).put(imgData, metadata: metaData) { (metaData, error) in
+                if error != nil {
+                    print("SGB: Unable to upload image to FIR Storage")
+                } else {
+                    print("SGB: Successful uplaod image to FIR Storage")
+                    let downloadUrl = metaData?.downloadURL()?.absoluteString
+                    
+                }
+            }
+        }
+    }
     
     @IBAction func signOutBtnPressed(_ sender: AnyObject) {
         let keychainResult = KeychainWrapper.standard.removeObject(forKey: key_userID)
