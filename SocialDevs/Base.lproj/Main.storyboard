@@ -368,6 +368,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="captionText" destination="49G-eP-oUu" id="7qF-KL-bLP"/>
+                                            <outlet property="heartBig" destination="yyH-tu-xIj" id="ooN-gv-IgT"/>
                                             <outlet property="likesLbl" destination="dmE-qU-xF1" id="9Pe-1X-x69"/>
                                             <outlet property="postPhoto" destination="qgn-Ch-3DL" id="49x-4i-XwA"/>
                                             <outlet property="profileImg" destination="fZs-if-Y33" id="zoU-tm-Dzz"/>

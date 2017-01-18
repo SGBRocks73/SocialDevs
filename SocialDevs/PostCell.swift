@@ -14,20 +14,26 @@ class PostCell: UITableViewCell {
     
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var heartBig: UIImage!
+    @IBOutlet weak var heartBig: UIImageView!
     @IBOutlet weak var postPhoto: UIImageView!
     @IBOutlet weak var captionText: UITextView!
     @IBOutlet weak var likesLbl: UILabel!
     
     var post: Post!
+    var likesRef: FIRDatabaseReference!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        let heartTap = UITapGestureRecognizer(target: self, action: #selector(heartTapped))
+        heartTap.numberOfTapsRequired = 1
+        heartBig.addGestureRecognizer(heartTap)
+        heartBig.isUserInteractionEnabled = true
     }
     
     func configureCell(post: Post, img: UIImage? = nil) {
         self.post = post
+        likesRef = DataService.ds.REF_USERS_CURRENT.child("likes").child(post.postKey)
         self.captionText.text = post.caption
         self.likesLbl.text = String(post.likes)
         
@@ -49,8 +55,30 @@ class PostCell: UITableViewCell {
                 }
             })
         }
-    }
         
+        likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                self.heartBig.image = UIImage(named: "empty-heart")
+            } else {
+                self.heartBig.image = UIImage(named: "filled-heart")
+            }
+        })
+    }
+    
+    func heartTapped(sender: UITapGestureRecognizer) {
+        
+        likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                self.heartBig.image = UIImage(named: "filled-heart")
+                self.post.adjustLikesTotal(add_like: true)
+                self.likesRef.setValue(true)
+            } else {
+                self.heartBig.image = UIImage(named: "empty-heart")
+                self.post.adjustLikesTotal(add_like: false)
+                self.likesRef.removeValue()
+            }
+        })
+    }
     
 
 }
