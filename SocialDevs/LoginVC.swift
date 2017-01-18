@@ -44,6 +44,7 @@ class LoginVC: UIViewController {
        
         if let _ = KeychainWrapper.standard.string(forKey: key_userID) {
             performSegue(withIdentifier: "MainFeedVC", sender: nil)
+            print("SGB: Succesful find of keychain UID")
 
         }
     }
