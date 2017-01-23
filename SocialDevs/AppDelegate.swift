@@ -7,8 +7,10 @@
 //
 
 import UIKit
-import  Firebase
+import Firebase
 import FBSDKLoginKit
+import Fabric
+import TwitterKit
 
 
 @UIApplicationMain
@@ -22,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FIRApp.configure()
+        Twitter.sharedInstance().start(withConsumerKey: "PjnkFvqfnCf8j2qUCk5FcOZgP", consumerSecret: "zTgvDOykvWRekwvhV82qFbepCvnDhPTKvxM3pKxCFNZjtv16MQ")
+        Fabric.with([Twitter.self])
+        
         return true
     }
 
@@ -50,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+        //return Twitter.sharedInstance().application(application, open: url, options: options)
         
     }
 

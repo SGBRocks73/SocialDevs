@@ -12,5 +12,7 @@ target 'SocialDevs' do
   pod 'Firebase/Storage'
   pod 'FBSDKLoginKit'
   pod 'SwiftKeychainWrapper'
+  pod 'Fabric'
+  pod 'TwitterKit'
 
 end

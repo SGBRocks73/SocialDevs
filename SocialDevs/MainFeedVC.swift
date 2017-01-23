@@ -64,12 +64,10 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             
             if let img = MainFeedVC.imageCache.object(forKey: postData.imageUrl as NSString) {
                 cell.configureCell(post: postData, img: img)
-                return cell
             } else {
                 cell.configureCell(post: postData)
-                return cell
             }
-            
+            return cell
         } else {
             return UITableViewCell()
         }

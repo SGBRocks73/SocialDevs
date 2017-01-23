@@ -5,6 +5,7 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Fabric (1.6.11)
   - FBSDKCoreKit (4.18.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.18.0):
@@ -55,17 +56,24 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.0)
   - GTMSessionFetcher/Core (1.1.7)
   - SwiftKeychainWrapper (3.0.1)
+  - TwitterCore (2.7.0):
+    - Fabric
+  - TwitterKit (2.7.0):
+    - TwitterCore (= 2.7.0)
 
 DEPENDENCIES:
+  - Fabric
   - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
   - SwiftKeychainWrapper
+  - TwitterKit
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
   FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
   Firebase: b8134e285eb33201115bc688bc5d7f112923bc1f
@@ -80,7 +88,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  TwitterCore: fbdbeaf6d2d20cf7c7aa4136fe5173c1c85df2e2
+  TwitterKit: 97e729ceea041d174126235bf6ff67dcf37772d4
 
-PODFILE CHECKSUM: 48efd78df862192e9dc640a72dfacb0b2b052666
+PODFILE CHECKSUM: 8fb197f727efc853aca99c9f54ce43d6bb9af51c
 
 COCOAPODS: 1.1.1

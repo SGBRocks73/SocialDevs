@@ -12,6 +12,8 @@ import FBSDKCoreKit
 import FirebaseAuth
 import Firebase
 import SwiftKeychainWrapper
+import TwitterKit
+import Fabric
 
 class dataEntryText: UITextField, Jitterable, Flashable {
 }
@@ -66,6 +68,22 @@ class LoginVC: UIViewController {
             
         }
     }
+    
+    @IBAction func twitterBtnPressed(_ sender: Any) {
+        
+        Twitter.sharedInstance().logIn { (session, error) in
+            if session != nil {
+                print("SGB: User logged in session with \(session?.userName)")
+                guard let token = session?.authToken else { return }
+                guard let secret = session?.authTokenSecret else { return }
+                let credentials = FIRTwitterAuthProvider.credential(withToken: token, secret: secret)
+                self.firebaseAuth(credentials)
+            } else {
+                print("SGB: Error with T \(error?.localizedDescription)")
+            }
+        }
+    }
+    
 
     @IBAction func loginBtnPressed(_ sender: UIButton) {
         
