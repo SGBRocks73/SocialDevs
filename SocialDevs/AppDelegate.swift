@@ -54,9 +54,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         
-        if Twitter.sharedInstance().application(application, open: url, options: options) {
-            return true
-        }
+//        if Twitter.sharedInstance().application(application, open: url, options: options) {
+//            return true
+//        }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
         
