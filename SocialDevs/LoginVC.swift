@@ -103,7 +103,7 @@ class LoginVC: UIViewController {
         
         if email == "" || pword == "" {
             
-        warningLbl.flasingText()
+        warningLbl.flashingText()
         loginBtn.jitter()
             
         } else {
@@ -151,7 +151,7 @@ class LoginVC: UIViewController {
     func finishSignIn(id: String, userData: Dictionary<String, String>) {
         DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
         KeychainWrapper.standard.set(id, forKey: key_userID)
-        performSegue(withIdentifier: "MainFeedVC", sender: nil)
+        performSegue(withIdentifier: "ProfileVC", sender: nil)
         print("SGB: Data saved to keychain")
     }
     

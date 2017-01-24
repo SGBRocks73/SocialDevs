@@ -12,7 +12,7 @@ protocol Flashable {}
 
 extension Flashable where Self: UIView {
    
-    func flasingText() {
+    func flashingText() {
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
             self.alpha = 1.0

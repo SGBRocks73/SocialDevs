@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FIRApp.configure()
-        //Twitter.sharedInstance().start(withConsumerKey: "PjnkFvqfnCf8j2qUCk5FcOZgP", consumerSecret: "zTgvDOykvWRekwvhV82qFbepCvnDhPTKvxM3pKxCFNZjtv16MQ")
+        Twitter.sharedInstance().start(withConsumerKey: "PjnkFvqfnCf8j2qUCk5FcOZgP", consumerSecret: "zTgvDOykvWRekwvhV82qFbepCvnDhPTKvxM3pKxCFNZjtv16MQ")
         Fabric.with([Twitter.self])
         
         return true
@@ -54,13 +54,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         
-//        if Twitter.sharedInstance().application(application, open: url, options: options) {
-//            return true
-//        }
-        
         return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
         
         
+    }
+    
+    private func application(_ application: UIApplication, open url: URL, options: [String: AnyObject]) -> Bool {
+    
+            if Twitter.sharedInstance().application(application, open: url, options: options) {
+                return true
+            }
+    return true
     }
 
 
