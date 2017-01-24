@@ -584,7 +584,6 @@
 		B3211C928097111EC7F7BBCB26DAA33F /* BFCancellationTokenSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFCancellationTokenSource.h; path = Bolts/Common/BFCancellationTokenSource.h; sourceTree = "<group>"; };
 		B50A0D3260519B905F3AB2476116730E /* BFTask.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFTask.h; path = Bolts/Common/BFTask.h; sourceTree = "<group>"; };
 		B518DCBABDAB5E84CF60991AFBB8B3D1 /* FBSDKErrorRecoveryAttempter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKErrorRecoveryAttempter.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ErrorRecovery/FBSDKErrorRecoveryAttempter.h; sourceTree = "<group>"; };
-		B670A4A57AF23DBA72E8EFE907E3A50B /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Frameworks/frameworks/FirebaseCore.framework; sourceTree = "<group>"; };
 		B84BE4CB0F1D8783A8146BC5072E6B83 /* GTMNSData+zlib.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "GTMNSData+zlib.m"; path = "Foundation/GTMNSData+zlib.m"; sourceTree = "<group>"; };
 		B857A0F153A657A873B5274F0EAB1EF4 /* FBSDKLogo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLogo.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKLogo.m; sourceTree = "<group>"; };
 		B85983C41DBF02BCB9C14AB3AEF726CF /* FBSDKServerConfigurationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKServerConfigurationManager.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKServerConfigurationManager.h; sourceTree = "<group>"; };
@@ -649,6 +648,7 @@
 		EFA8DF3F3EBF3CD7D4203D4CAC99BAC3 /* FBSDKAppEventsDeviceInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAppEventsDeviceInfo.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKAppEventsDeviceInfo.m; sourceTree = "<group>"; };
 		F083EE3678B24CF13D1212F02CCC698C /* Bolts.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Bolts.h; path = Bolts/Common/Bolts.h; sourceTree = "<group>"; };
 		F1CDB3167F5DD4D42E7EAD2D3E5A4C37 /* FBSDKApplicationDelegate+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKApplicationDelegate+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKApplicationDelegate+Internal.h"; sourceTree = "<group>"; };
+		F21562C40C2D8E629043006CA10BFBC5 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Frameworks/FirebaseCore.framework; sourceTree = "<group>"; };
 		F2783A33EB5E8AFD8C6B5D30E114C6AF /* FBSDKGraphRequest+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKGraphRequest+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequest+Internal.h"; sourceTree = "<group>"; };
 		F3571E03B3620A65D051F4EA0DA0844A /* GTMSessionFetcherService.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GTMSessionFetcherService.m; path = Source/GTMSessionFetcherService.m; sourceTree = "<group>"; };
 		F3BF8BAA07BFF14665A636CD3B3D6C78 /* GTMSessionFetcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GTMSessionFetcher.h; path = Source/GTMSessionFetcher.h; sourceTree = "<group>"; };
@@ -896,7 +896,7 @@
 		30AC2642F0DBE5B01B9436BAC0A84CC8 /* FirebaseCore */ = {
 			isa = PBXGroup;
 			children = (
-				50D7892433C9313E3D85CA2CBF33CA84 /* Frameworks */,
+				BB977F69C1EDC8E3E3F7DF91708B5BB6 /* Frameworks */,
 			);
 			name = FirebaseCore;
 			path = FirebaseCore;
@@ -951,14 +951,6 @@
 			isa = PBXGroup;
 			children = (
 				48CAEBC4B158CFFB88B5C5C487E57387 /* GoogleInterchangeUtilities.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		50D7892433C9313E3D85CA2CBF33CA84 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				B670A4A57AF23DBA72E8EFE907E3A50B /* FirebaseCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1383,6 +1375,14 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Bolts";
+			sourceTree = "<group>";
+		};
+		BB977F69C1EDC8E3E3F7DF91708B5BB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F21562C40C2D8E629043006CA10BFBC5 /* FirebaseCore.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CBCFFE73C9B396197F72D2794D7AF5A2 /* Frameworks */ = {

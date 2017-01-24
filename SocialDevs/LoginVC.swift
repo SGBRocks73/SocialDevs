@@ -71,17 +71,28 @@ class LoginVC: UIViewController {
     
     @IBAction func twitterBtnPressed(_ sender: Any) {
         
-        Twitter.sharedInstance().logIn { (session, error) in
-            if session != nil {
-                print("SGB: User logged in session with \(session?.userName)")
+        Twitter.sharedInstance().logIn(withMethods: .webBased) { (session, error) in
+            if session !=  nil {
+                print("SGB: Logged in session with \(session?.userName)")
                 guard let token = session?.authToken else { return }
                 guard let secret = session?.authTokenSecret else { return }
                 let credentials = FIRTwitterAuthProvider.credential(withToken: token, secret: secret)
                 self.firebaseAuth(credentials)
             } else {
-                print("SGB: Error with T \(error?.localizedDescription)")
+                print("SGB: Error with Twitter login \(error?.localizedDescription)")
             }
         }
+//        Twitter.sharedInstance().logIn { (session, error) in
+//            if session != nil {
+//                print("SGB: User logged in session with \(session?.userName)")
+//                guard let token = session?.authToken else { return }
+//                guard let secret = session?.authTokenSecret else { return }
+//                let credentials = FIRTwitterAuthProvider.credential(withToken: token, secret: secret)
+//                self.firebaseAuth(credentials)
+//            } else {
+//                print("SGB: Error with T \(error?.localizedDescription)")
+//            }
+//        }
     }
     
 
