@@ -139,9 +139,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let keychainResult = KeychainWrapper.standard.removeObject(forKey: key_userID)
         print("SGB: Removed keychain ID \(keychainResult)")
         try! FIRAuth.auth()?.signOut()
-        performSegue(withIdentifier: "LoginVC", sender: nil)
-        //dismiss(animated: true, completion: nil)
-        // change to segue to get to login VC
+        dismiss(animated: true, completion: nil)
     
     }
 
