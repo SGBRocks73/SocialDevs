@@ -25,17 +25,12 @@ class ProfileVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func uploadProfileName(userIDName: String) {
+    func uploadProfileName(userName: String) {
         let profileIDName: Dictionary<String, AnyObject> = ["userName": profileName.text as AnyObject]
-        let ProfileNameRef = DataService.ds.REF_USERS_CURRENT.child("\(key_userID)")
+        let ProfileNameRef = DataService.ds.REF_USERS_CURRENT
         ProfileNameRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let _ = snapshot.value as? NSNull {
-                print("SGB: I'm lost")
-                ProfileNameRef.setValue(profileIDName)
-            } else {
-                print("SGB: Unable to assign profile name correctly")
-                ProfileNameRef.setValue(profileIDName)
-            }
+                print("SGB: Assigned profile name correctly")
+                ProfileNameRef.updateChildValues(profileIDName)
         })
     }
 
@@ -43,22 +38,16 @@ class ProfileVC: UIViewController {
         
         let userName = profileName.text
         let userImg = profileImg.image
-        
         if userName == "" || userImg == nil {
             //fix userImg nil statement
             profileBtn.jitter()
             warningLbl.flashingText()
-            
         } else {
-            
             print("SGB: Created profile")
-            let img = profileImg.image
-        
-            if let userImage = UIImageJPEGRepresentation(img!, 0.2) {
-                
+            if let userImage = UIImageJPEGRepresentation(userImg!, 0.2) {
                 let imgUid = NSUUID().uuidString
                 let metaData = FIRStorageMetadata()
-                uploadProfileName(userIDName: userName!)
+                uploadProfileName(userName: userName!)
                 metaData.contentType = "image/jpeg"
                 DataService.ds.REF_USER_IMG.child(imgUid).put(userImage, metadata: metaData) { (metaData, error) in
                     if error != nil {
@@ -69,7 +58,6 @@ class ProfileVC: UIViewController {
                     }
                 }
             }
-            
             
         }
     }

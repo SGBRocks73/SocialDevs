@@ -34,6 +34,8 @@ class LoginVC: UIViewController {
     @IBOutlet weak var twitterBtn: RoundedButton!
     @IBOutlet weak var facebookBtn: RoundedButton!
     
+    var profileUserRef: FIRDatabaseReference!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,12 @@ class LoginVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
        
+//        profileUserRef = DataService.ds.REF_USERS_CURRENT.child("userName")
+//        profileUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//            // TODO code to check if user has a userName - that means profile created - segue to MainFeedVC
+//            print(snapshot.value!)
+//        })
+//        
         if let _ = KeychainWrapper.standard.string(forKey: key_userID) {
             performSegue(withIdentifier: "MainFeedVC", sender: nil)
             print("SGB: Succesful find of keychain UID")

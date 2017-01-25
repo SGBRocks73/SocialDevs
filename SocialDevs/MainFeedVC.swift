@@ -17,6 +17,8 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     @IBOutlet weak var captionField: TextFieldExtras!
     
     var posts = [Post]()
+    var userDict: Dictionary<String, AnyObject>!
+    var userName: String!
     var imagePicker: UIImagePickerController!
     var imageSelected = false
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
@@ -30,6 +32,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
         
+        getUserName()
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             print(snapshot.value!)
             self.posts = []
@@ -45,7 +48,19 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             }
             self.tableView.reloadData()
         })
+        
 
+    }
+    
+    func getUserName() {
+        let userRef = DataService.ds.REF_USERS_CURRENT.child("userName")
+        print("SGB: Check REF \(userRef)")
+        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let snapshot = snapshot.value as? String {
+                self.userName = snapshot as String!
+                print("SGB: \(self.userName)")
+            }
+        })
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,11 +72,8 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let postData = posts[indexPath.row]
-        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
-            
             if let img = MainFeedVC.imageCache.object(forKey: postData.imageUrl as NSString) {
                 cell.configureCell(post: postData, img: img)
             } else {
@@ -71,7 +83,6 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         } else {
             return UITableViewCell()
         }
-     
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -120,11 +131,14 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     func uploadToFirebase(imageUrl: String) {
+
         let post : Dictionary<String, AnyObject> = [
             "caption": captionField.text as AnyObject,
             "imageURL": imageUrl as AnyObject,
-            "likes": 0 as AnyObject
+            "likes": 0 as AnyObject,
+            "userIDName": userName as AnyObject
         ]
+        
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
         firebasePost.setValue(post)
         captionField.text = ""
