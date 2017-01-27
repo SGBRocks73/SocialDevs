@@ -46,13 +46,11 @@ class LoginVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
        
-//        profileUserRef = DataService.ds.REF_USERS_CURRENT.child("userName")
-//        profileUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//            // TODO code to check if user has a userName - that means profile created - segue to MainFeedVC
-//            print(snapshot.value!)
-//        })
-//        
         if let _ = KeychainWrapper.standard.string(forKey: key_userID) {
+            
+            // add code here to check if user has a profile (can see using snapshot as NSNULL with profile name)
+            //perhaps use a guard klet statement with keychain and profile namw
+           
             performSegue(withIdentifier: "MainFeedVC", sender: nil)
             print("SGB: Succesful find of keychain UID")
 
@@ -90,17 +88,6 @@ class LoginVC: UIViewController {
                 print("SGB: Error with Twitter login \(error?.localizedDescription)")
             }
         }
-//        Twitter.sharedInstance().logIn { (session, error) in
-//            if session != nil {
-//                print("SGB: User logged in session with \(session?.userName)")
-//                guard let token = session?.authToken else { return }
-//                guard let secret = session?.authTokenSecret else { return }
-//                let credentials = FIRTwitterAuthProvider.credential(withToken: token, secret: secret)
-//                self.firebaseAuth(credentials)
-//            } else {
-//                print("SGB: Error with T \(error?.localizedDescription)")
-//            }
-//        }
     }
     
 

@@ -17,7 +17,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     @IBOutlet weak var captionField: TextFieldExtras!
     
     var posts = [Post]()
-    var userDict: Dictionary<String, AnyObject>!
+    var postUserName: Post!
     var userName: String!
     var imagePicker: UIImagePickerController!
     var imageSelected = false
@@ -32,33 +32,30 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
         
-        getUserName()
+       
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
-            print(snapshot.value!)
             self.posts = []
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
                     print("SNAP: \(snap)")
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        let key = snap.key
-                        let post = Post.init(postKey: key, postData: postDict)
-                        self.posts.append(post)
+                        let Pkey = snap.key
+                        
+                        let insidePostRef = DataService.ds.REF_POSTS.child(Pkey).child("usersKey")
+                        insidePostRef.observe(.value, with: { (snapshot) in
+                            if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                                for minisnap in snaps {
+                                    let userKey = minisnap.key
+                                    print("SGB: User key in post \(Pkey) is \(userKey)")
+                                    let post = Post.init(postKey: Pkey, postData: postDict, userKey: userKey)
+                                    self.posts.append(post)
+                                }
+                            }
+                            
+                            self.tableView.reloadData()
+                        })
                     }
                 }
-            }
-            self.tableView.reloadData()
-        })
-        
-
-    }
-    
-    func getUserName() {
-        let userRef = DataService.ds.REF_USERS_CURRENT.child("userName")
-        print("SGB: Check REF \(userRef)")
-        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let snapshot = snapshot.value as? String {
-                self.userName = snapshot as String!
-                print("SGB: \(self.userName)")
             }
         })
     }
@@ -136,7 +133,6 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             "caption": captionField.text as AnyObject,
             "imageURL": imageUrl as AnyObject,
             "likes": 0 as AnyObject,
-            "userIDName": userName as AnyObject
         ]
         
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
@@ -144,9 +140,14 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         captionField.text = ""
         imageSelected = false
         addImage.image = UIImage(named: "add-image")
+       
+        if let uid = KeychainWrapper.standard.string(forKey: key_userID) {
+            let postUser: Dictionary<String, AnyObject> = [uid: true as AnyObject]
+            firebasePost.child("usersKey").updateChildValues(postUser)
+        }
         
         tableView.reloadData()
-                
+        
     }
     
     @IBAction func signOutBtnPressed(_ sender: AnyObject) {

@@ -37,6 +37,7 @@ class ProfileVC: UIViewController {
     @IBAction func createProfilePressed(_ sender: Any) {
         
         let userName = profileName.text
+        // use guard let where text == ""
         let userImg = profileImg.image
         if userName == "" || userImg == nil {
             //fix userImg nil statement
