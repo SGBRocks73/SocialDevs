@@ -17,10 +17,11 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     @IBOutlet weak var captionField: TextFieldExtras!
     
     var posts = [Post]()
-    var postUserName: Post!
+    //var postUserName: Post!
     var userName: String!
     var imagePicker: UIImagePickerController!
     var imageSelected = false
+    var userIDKey: FIRDatabaseReference!
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     override func viewDidLoad() {
@@ -47,12 +48,24 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                                 for minisnap in snaps {
                                     let userKey = minisnap.key
                                     print("SGB: User key in post \(Pkey) is \(userKey)")
-                                    let post = Post.init(postKey: Pkey, postData: postDict, userKey: userKey)
-                                    self.posts.append(post)
+                                    
+                                    let userProfileRef = DataService.ds.REF_USERS.child(userKey)
+                                    userProfileRef.observe(.value, with: { (snapshot) in
+                                        if let data = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                                            for microsnap in data {
+                                                 if let userProflie = microsnap.value as? Dictionary<String, AnyObject> {
+                                                    if microsnap.key == "userData" {
+                                                        let post = Post.init(postKey: Pkey, postData: postDict, userKey: userKey, userProfileData: userProflie)
+                                                        self.posts.append(post)
+                                                        print("SGB this is the user profile data \(microsnap)")
+                                                    }
+                                                }
+                                            }
+                                            self.tableView.reloadData()
+                                        }
+                                    })
                                 }
                             }
-                            
-                            self.tableView.reloadData()
                         })
                     }
                 }
@@ -73,6 +86,8 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
             if let img = MainFeedVC.imageCache.object(forKey: postData.imageUrl as NSString) {
                 cell.configureCell(post: postData, img: img)
+            } else if let pImage = MainFeedVC.imageCache.object(forKey: postData.profilePicURL as NSString) {
+                cell.configureCell(post: postData, pImage: pImage)
             } else {
                 cell.configureCell(post: postData)
             }

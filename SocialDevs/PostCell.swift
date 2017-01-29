@@ -21,7 +21,7 @@ class PostCell: UITableViewCell {
     
     var post: Post!
     var likesRef: FIRDatabaseReference!
-    var userIDRef: FIRDatabaseReference!
+    var profilePicRef: FIRDatabaseReference!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,15 +32,34 @@ class PostCell: UITableViewCell {
         heartBig.isUserInteractionEnabled = true
     }
     
-    func configureCell(post: Post, img: UIImage? = nil, name: String? = "Loading Name...") {
+    func configureCell(post: Post, img: UIImage? = nil, pImage: UIImage? = nil) {
         
-        userIDRef = DataService.ds.REF_POSTS.child(post.postKey).child("usersKey").child(post.userKey)
+        //userIDRef = DataService.ds.REF_POSTS.child(post.postKey).child("usersKey").child(post.userKey)
         
         self.post = post
         likesRef = DataService.ds.REF_USERS_CURRENT.child("likes").child(post.postKey)
         self.captionText.text = post.caption
         self.likesLbl.text = String(post.likes)
-        self.post.addUserName(userIDKeyRef: userIDRef)
+        self.userName.text? = post.userIDName.capitalized
+        
+        if pImage != nil {
+            self.profileImg.image = pImage
+        } else {
+            let profileImageRef = FIRStorage.storage().reference(forURL: post.profilePicURL)
+            profileImageRef.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                if error != nil {
+                    print("SGB Unable to download profile image \(error?.localizedDescription)")
+                } else {
+                    if let profileImage = data {
+                        if let pImage = UIImage(data: profileImage) {
+                            self.profileImg.image = pImage
+                            MainFeedVC.imageCache.setObject(pImage, forKey: post.profilePicURL as NSString)
+                        }
+                        
+                    }
+                }
+            })
+        }
         
         
         if img != nil {

@@ -27,7 +27,7 @@ class ProfileVC: UIViewController {
     
     func uploadProfileName(userName: String) {
         let profileIDName: Dictionary<String, AnyObject> = ["userName": profileName.text as AnyObject]
-        let ProfileNameRef = DataService.ds.REF_USERS_CURRENT
+        let ProfileNameRef = DataService.ds.REF_USERS_CURRENT.child("userData")
         ProfileNameRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 print("SGB: Assigned profile name correctly")
                 ProfileNameRef.updateChildValues(profileIDName)

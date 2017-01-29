@@ -18,6 +18,7 @@ class Post {
     private var _imageUrl: String!
     private var _likes: Int!
     private var _userIDName: String!
+    private var _ProfilePicURL: String!
     private var _postRef: FIRDatabaseReference!
     private var _userPostRef: FIRDatabaseReference!
     private var _userRef: FIRDatabaseReference!
@@ -44,9 +45,15 @@ class Post {
     
     var userIDName: String {
         if _userIDName == nil {
-            _userIDName = "Loading User Name..."
+            _userIDName = "Loading User..."
         }
         return _userIDName
+    }
+    var profilePicURL: String {
+        if _ProfilePicURL == nil {
+            _ProfilePicURL = ""
+        }
+        return _ProfilePicURL
     }
         
     
@@ -61,9 +68,10 @@ class Post {
         self._likes = likes
     }
     
-    init(postKey: String, postData: Dictionary<String, AnyObject>, userKey: String) {
+    init(postKey: String, postData: Dictionary<String, AnyObject>, userKey: String, userProfileData: Dictionary<String, AnyObject>) {
         self._postKey = postKey
         self._userKey = userKey
+        
         
         /*if let statement allows for may not be data there or of problem doesnt crash - eg: if missepll caption. This init looks for "tags" in Firebase DB*/
         
@@ -76,7 +84,13 @@ class Post {
         if let likes = postData["likes"] as? Int {
             self._likes = likes
         }
-     
+        if let userIDName = userProfileData["userName"] as? String {
+            self._userIDName = userIDName
+        }
+        if let profilePicURL = userProfileData["profilePicURL"] as? String {
+            self._ProfilePicURL = profilePicURL
+        }
+        
         _postRef = DataService.ds.REF_POSTS.child(_postKey)
         
     }
@@ -90,15 +104,15 @@ class Post {
         _postRef.child("likes").setValue(_likes)
     }
     
-    func addUserName(userIDKeyRef: FIRDatabaseReference) {
-        let userIDKey = userIDKeyRef.key
-        let userRef = DataService.ds.REF_USERS.child(userIDKey).child("userName")
-        userRef.observe(.value, with: { (snapshot) in
-            if let userIDName = snapshot.value as? String {
-                self._userIDName = userIDName
-            }
-            
-        })
-    }
-      
+//    func addUserName(userIDKeyRef: FIRDatabaseReference) {
+//        let userIDKey = userIDKeyRef.key
+//        let userRef = DataService.ds.REF_USERS.child(userIDKey).child("userName")
+//        userRef.observe(.value, with: { (snapshot) in
+//            if let userIDName = snapshot.value as? String {
+//                self._userIDName = userIDName
+//            }
+//            
+//        })
+//    }
+    
 }
