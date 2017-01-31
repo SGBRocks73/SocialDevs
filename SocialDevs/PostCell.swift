@@ -34,8 +34,6 @@ class PostCell: UITableViewCell {
     
     func configureCell(post: Post, img: UIImage? = nil, pImage: UIImage? = nil) {
         
-        //userIDRef = DataService.ds.REF_POSTS.child(post.postKey).child("usersKey").child(post.userKey)
-        
         self.post = post
         likesRef = DataService.ds.REF_USERS_CURRENT.child("likes").child(post.postKey)
         self.captionText.text = post.caption
@@ -55,12 +53,10 @@ class PostCell: UITableViewCell {
                             self.profileImg.image = pImage
                             MainFeedVC.imageCache.setObject(pImage, forKey: post.profilePicURL as NSString)
                         }
-                        
                     }
                 }
             })
         }
-        
         
         if img != nil {
             self.postPhoto.image = img
@@ -81,7 +77,6 @@ class PostCell: UITableViewCell {
             })
         }
         
-        
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.heartBig.image = UIImage(named: "empty-heart")
@@ -89,9 +84,6 @@ class PostCell: UITableViewCell {
                 self.heartBig.image = UIImage(named: "filled-heart")
             }
         })
-        
-        self.userName.text = post.userIDName.capitalized
-        //add code here to download profile picture by using user id key within post
     }
     
     func heartTapped(sender: UITapGestureRecognizer) {

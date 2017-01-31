@@ -17,11 +17,14 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     @IBOutlet weak var captionField: TextFieldExtras!
     
     var posts = [Post]()
-    //var postUserName: Post!
+
     var userName: String!
     var imagePicker: UIImagePickerController!
     var imageSelected = false
     var userIDKey: FIRDatabaseReference!
+
+    
+    
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     
     override func viewDidLoad() {
@@ -38,26 +41,33 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             self.posts = []
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
-                    print("SNAP: \(snap)")
+                    print("SGB: \(snapshot)")
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        let Pkey = snap.key
                         
+                        let Pkey = snap.key
+
                         let insidePostRef = DataService.ds.REF_POSTS.child(Pkey).child("usersKey")
-                        insidePostRef.observe(.value, with: { (snapshot) in
+                        insidePostRef.observeSingleEvent(of: .value, with: { (snapshot) in
                             if let snaps = snapshot.children.allObjects as? [FIRDataSnapshot] {
                                 for minisnap in snaps {
+                                    
+
                                     let userKey = minisnap.key
+                                    
                                     print("SGB: User key in post \(Pkey) is \(userKey)")
                                     
                                     let userProfileRef = DataService.ds.REF_USERS.child(userKey)
-                                    userProfileRef.observe(.value, with: { (snapshot) in
+                                    userProfileRef.observeSingleEvent(of: .value, with: { (snapshot) in
                                         if let data = snapshot.children.allObjects as? [FIRDataSnapshot] {
                                             for microsnap in data {
                                                  if let userProflie = microsnap.value as? Dictionary<String, AnyObject> {
                                                     if microsnap.key == "userData" {
+                                                        
                                                         let post = Post.init(postKey: Pkey, postData: postDict, userKey: userKey, userProfileData: userProflie)
+                                                        
                                                         self.posts.append(post)
-                                                        print("SGB this is the user profile data \(microsnap)")
+
+                                                            print("SGB this is the user profile data \(userProflie)")
                                                     }
                                                 }
                                             }
@@ -69,10 +79,14 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                         })
                     }
                 }
+                
+                self.tableView.reloadData()
             }
         })
+        
+
     }
-    
+   
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -82,18 +96,17 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let postData = posts[indexPath.row]
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
-            if let img = MainFeedVC.imageCache.object(forKey: postData.imageUrl as NSString) {
-                cell.configureCell(post: postData, img: img)
-            } else if let pImage = MainFeedVC.imageCache.object(forKey: postData.profilePicURL as NSString) {
-                cell.configureCell(post: postData, pImage: pImage)
+            let postData = posts[indexPath.row]
+            if let img = MainFeedVC.imageCache.object(forKey: postData.imageUrl as NSString), let pImage = MainFeedVC.imageCache.object(forKey: postData.profilePicURL as NSString) {
+                cell.configureCell(post: postData, img: img, pImage: pImage)
             } else {
                 cell.configureCell(post: postData)
             }
             return cell
         } else {
-            return UITableViewCell()
+        return UITableViewCell()
         }
     }
     
@@ -108,11 +121,11 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         imagePicker.dismiss(animated: true, completion: nil)
     }
-    
     @IBAction func imagePickerPressed(_ sender: Any) {
         present(imagePicker, animated: true, completion: nil)
     }
     
+  
     @IBAction func postBtnPressed(_ sender: Any) {
         guard let caption = captionField.text, caption != "" else {
             //using the guard statement - if it is NOT true do the code
@@ -160,8 +173,8 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             let postUser: Dictionary<String, AnyObject> = [uid: true as AnyObject]
             firebasePost.child("usersKey").updateChildValues(postUser)
         }
-        
-        tableView.reloadData()
+
+        self.tableView.reloadData()
         
     }
     

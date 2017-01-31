@@ -237,9 +237,6 @@
                                                     <constraint firstAttribute="width" constant="54" id="2iX-Tr-qdj"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="54R-Qg-zeN"/>
                                                 </constraints>
-                                                <connections>
-                                                    <outletCollection property="gestureRecognizers" destination="foa-JT-b4g" appends="YES" id="80W-7a-1PQ"/>
-                                                </connections>
                                             </imageView>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add a caption" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="rBH-7H-pkh" customClass="TextFieldExtras" customModule="SocialDevs" customModuleProvider="target">
                                                 <rect key="frame" x="64" y="0.0" width="144" height="54"/>
@@ -261,12 +258,24 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ety-db-Kn8">
+                                        <rect key="frame" x="8" y="12.5" width="54" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="54" id="7sq-bb-R9A"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="DAK-sZ-gid"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="imagePickerPressed:" destination="5jr-fC-dj0" eventType="touchUpInside" id="IHb-Is-r7M"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="0TO-ke-4Ah"/>
                                     <constraint firstAttribute="trailing" secondItem="8eO-pB-2SC" secondAttribute="trailing" constant="8" id="Pjb-gj-8CN"/>
+                                    <constraint firstItem="Ety-db-Kn8" firstAttribute="centerX" secondItem="lsd-7i-Ftv" secondAttribute="centerX" id="YW6-wk-vFH"/>
                                     <constraint firstAttribute="bottom" secondItem="8eO-pB-2SC" secondAttribute="bottom" constant="8" id="aco-Ab-2QC"/>
+                                    <constraint firstItem="Ety-db-Kn8" firstAttribute="centerY" secondItem="lsd-7i-Ftv" secondAttribute="centerY" id="gdn-Bs-Jbp"/>
                                     <constraint firstItem="8eO-pB-2SC" firstAttribute="leading" secondItem="mIO-G7-eRl" secondAttribute="leading" constant="8" id="iN2-h0-uQa"/>
                                     <constraint firstItem="8eO-pB-2SC" firstAttribute="top" secondItem="mIO-G7-eRl" secondAttribute="top" constant="8" id="yTn-mI-H1i"/>
                                 </constraints>
@@ -304,14 +313,18 @@
                                                                             <color key="textColor" red="0.40784313729999999" green="0.62352941179999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="yyH-tu-xIj">
+                                                                        <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="yyH-tu-xIj">
                                                                             <rect key="frame" x="222" y="0.0" width="50" height="50"/>
+                                                                            <gestureRecognizers/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="50" id="7Wx-E5-dd5"/>
                                                                                 <constraint firstAttribute="width" constant="50" id="FRg-Ot-cQq"/>
                                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="LN3-ml-iGf"/>
                                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="iJj-IJ-cVU"/>
                                                                             </constraints>
+                                                                            <connections>
+                                                                                <outletCollection property="gestureRecognizers" destination="eht-yQ-bFH" appends="YES" id="LfV-Dn-b9t"/>
+                                                                            </connections>
                                                                         </imageView>
                                                                     </subviews>
                                                                 </stackView>
@@ -321,7 +334,7 @@
                                                                         <constraint firstAttribute="height" constant="120" id="Swj-I1-qSC"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="49G-eP-oUu">
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="740" translatesAutoresizingMaskIntoConstraints="NO" id="49G-eP-oUu">
                                                                     <rect key="frame" x="0.0" y="180" width="272" height="77"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <constraints>
@@ -403,11 +416,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOk-Yb-D9q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="foa-JT-b4g">
-                    <connections>
-                        <action selector="imagePickerPressed:" destination="5jr-fC-dj0" id="IHj-jv-iTT"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="eht-yQ-bFH"/>
             </objects>
             <point key="canvasLocation" x="977" y="146"/>
         </scene>
@@ -445,9 +454,6 @@
                                             <constraint firstAttribute="width" constant="40" id="bbB-VM-kqm"/>
                                             <constraint firstAttribute="height" constant="40" id="cRy-nD-TfI"/>
                                         </constraints>
-                                        <connections>
-                                            <action selector="signOutBtnPressed:" destination="5jr-fC-dj0" eventType="touchUpInside" id="1KW-qp-fgS"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.5450980392" green="0.76470588240000004" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -482,8 +488,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue-user-head-png-18" translatesAutoresizingMaskIntoConstraints="NO" id="TM7-Ke-uT2" customClass="CircleImage" customModule="SocialDevs" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue-user-head-png-18" translatesAutoresizingMaskIntoConstraints="NO" id="TM7-Ke-uT2" customClass="CircleImage" customModule="SocialDevs" customModuleProvider="target">
                                 <rect key="frame" x="60" y="120" width="200" height="200"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="7nL-5t-ZBV"/>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="xlY-RC-2OS"/>
@@ -510,9 +517,20 @@
                                 <color key="textColor" red="1" green="0.065488751900000003" blue="0.03949048149" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycx-zM-VAd">
+                                <rect key="frame" x="60" y="120" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="PgG-lU-bYG"/>
+                                    <constraint firstAttribute="height" constant="200" id="avk-mq-0X2"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="profleBtnTapped:" destination="xvf-0f-ptI" eventType="touchUpInside" id="R44-Po-uAi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ycx-zM-VAd" firstAttribute="centerX" secondItem="TM7-Ke-uT2" secondAttribute="centerX" id="0ns-WM-gif"/>
                             <constraint firstItem="oog-oW-3ao" firstAttribute="leading" secondItem="o3X-rI-E8c" secondAttribute="leadingMargin" id="1Uf-6m-Dsx"/>
                             <constraint firstItem="tiw-I2-jg2" firstAttribute="top" secondItem="jjj-TS-JcH" secondAttribute="bottom" constant="70" id="5b6-Rs-W4g"/>
                             <constraint firstItem="jjj-TS-JcH" firstAttribute="top" secondItem="TM7-Ke-uT2" secondAttribute="bottom" constant="16" id="7Qm-0y-UR3"/>
@@ -524,6 +542,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="oog-oW-3ao" secondAttribute="trailing" id="QiN-hy-uwP"/>
                             <constraint firstItem="fQ7-u2-SGk" firstAttribute="leading" secondItem="o3X-rI-E8c" secondAttribute="leadingMargin" id="SDO-bK-T32"/>
                             <constraint firstItem="1iD-sw-c0A" firstAttribute="leading" secondItem="o3X-rI-E8c" secondAttribute="leading" id="YLB-X4-0kW"/>
+                            <constraint firstItem="ycx-zM-VAd" firstAttribute="centerY" secondItem="TM7-Ke-uT2" secondAttribute="centerY" id="Ybk-Zq-8Lo"/>
                             <constraint firstItem="Ufe-nf-qSA" firstAttribute="centerX" secondItem="o3X-rI-E8c" secondAttribute="centerX" id="ZOz-jt-37S"/>
                             <constraint firstItem="fQ7-u2-SGk" firstAttribute="top" secondItem="jjj-TS-JcH" secondAttribute="bottom" constant="35" id="egY-3V-wus"/>
                             <constraint firstItem="oog-oW-3ao" firstAttribute="top" secondItem="tiw-I2-jg2" secondAttribute="bottom" constant="8" id="hiT-CA-6Jn"/>

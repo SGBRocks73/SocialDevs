@@ -24,6 +24,9 @@ class Post {
     private var _userRef: FIRDatabaseReference!
     
     var caption: String {
+        if _caption == nil {
+            _caption = "Loading Caption..."
+        }
         return _caption
     }
     
@@ -32,10 +35,16 @@ class Post {
     }
     
     var userKey: String {
+        if _userKey == nil {
+            _userKey = ""
+        }
         return _userKey
     }
     
     var imageUrl: String {
+        if _imageUrl == nil {
+            _imageUrl = ""
+        }
         return _imageUrl
     }
     
@@ -62,11 +71,11 @@ class Post {
         return _userRef
     }
     
-    init(caption: String, imageUrl: String, likes: Int) {
-        self._caption = caption
-        self._imageUrl = imageUrl
-        self._likes = likes
-    }
+//    init(caption: String, imageUrl: String, likes: Int) {
+//        self._caption = caption
+//        self._imageUrl = imageUrl
+//        self._likes = likes
+//    }
     
     init(postKey: String, postData: Dictionary<String, AnyObject>, userKey: String, userProfileData: Dictionary<String, AnyObject>) {
         self._postKey = postKey
@@ -104,15 +113,5 @@ class Post {
         _postRef.child("likes").setValue(_likes)
     }
     
-//    func addUserName(userIDKeyRef: FIRDatabaseReference) {
-//        let userIDKey = userIDKeyRef.key
-//        let userRef = DataService.ds.REF_USERS.child(userIDKey).child("userName")
-//        userRef.observe(.value, with: { (snapshot) in
-//            if let userIDName = snapshot.value as? String {
-//                self._userIDName = userIDName
-//            }
-//            
-//        })
-//    }
     
 }

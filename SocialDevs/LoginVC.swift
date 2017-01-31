@@ -45,8 +45,10 @@ class LoginVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-       
-        if let _ = KeychainWrapper.standard.string(forKey: key_userID) {
+        
+        
+               if let _ = KeychainWrapper.standard.string(forKey: key_userID) {
+        
             
             // add code here to check if user has a profile (can see using snapshot as NSNULL with profile name)
             //perhaps use a guard klet statement with keychain and profile namw
@@ -146,7 +148,14 @@ class LoginVC: UIViewController {
     func finishSignIn(id: String, userData: Dictionary<String, String>) {
         DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
         KeychainWrapper.standard.set(id, forKey: key_userID)
-        performSegue(withIdentifier: "ProfileVC", sender: nil)
+        profileUserRef = DataService.ds.REF_USERS_CURRENT.child("userData")
+        profileUserRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull  {
+                self.performSegue(withIdentifier: "ProfileVC", sender: nil)
+            } else {
+                self.performSegue(withIdentifier: "MainFeedVC", sender: nil)
+            }
+        })
         print("SGB: Data saved to keychain")
     }
     

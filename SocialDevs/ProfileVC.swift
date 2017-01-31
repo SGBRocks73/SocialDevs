@@ -12,17 +12,23 @@ import Firebase
 class profileBtn: UIButton, Jitterable {
 }
 
-class ProfileVC: UIViewController {
+class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     @IBOutlet weak var profileName: dataEntryText!
-    @IBOutlet weak var profileImg: CircleImage!
+    @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var profileBtn: profileBtn!
     @IBOutlet weak var warningLbl: warningLabel!
     
+    var imagePicker: UIImagePickerController!
+    var profileImgSelected = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        imagePicker = UIImagePickerController()
 
-        // Do any additional setup after loading the view.
     }
     
     func uploadProfileName(userName: String) {
@@ -33,17 +39,33 @@ class ProfileVC: UIViewController {
                 ProfileNameRef.updateChildValues(profileIDName)
         })
     }
-
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let profileImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            profileImg.image = profileImage
+            profileImgSelected = true
+        } else {
+            print("SGB: No valid profile image selected")
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func profleBtnTapped(_ sender: Any) {
+        present(imagePicker, animated: true, completion: nil)
+        
+    }
+    
     @IBAction func createProfilePressed(_ sender: Any) {
         
         let userName = profileName.text
         // use guard let where text == ""
         let userImg = profileImg.image
-        if userName == "" || userImg == nil {
+        if userName == "" || userImg == UIImage(named: "blue-user-head-png-18") {
             //fix userImg nil statement
             profileBtn.jitter()
             warningLbl.flashingText()
-        } else {
+        } else if profileImgSelected == true {
             print("SGB: Created profile")
             if let userImage = UIImageJPEGRepresentation(userImg!, 0.2) {
                 let imgUid = NSUUID().uuidString
@@ -59,6 +81,9 @@ class ProfileVC: UIViewController {
                     }
                 }
             }
+            profileName.text = ""
+            profileImg.image = UIImage(named: "blue-user-head-png-18")
+            profileImgSelected = false
             
         }
     }

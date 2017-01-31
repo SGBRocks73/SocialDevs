@@ -144,8 +144,8 @@
 				DEFF3FA91E1B12020021E0C5 /* LaunchScreen.storyboard */,
 				DEFF3FA71E1B12020021E0C5 /* Assets.xcassets */,
 				DEFF3FAC1E1B12020021E0C5 /* Info.plist */,
-				DE85AD231E1B62AA007ACC41 /* SGB Logo.jpg */,
 				DEFF3FB21E1B12290021E0C5 /* GoogleService-Info.plist */,
+				DE85AD231E1B62AA007ACC41 /* SGB Logo.jpg */,
 			);
 			path = SocialDevs;
 			sourceTree = "<group>";
