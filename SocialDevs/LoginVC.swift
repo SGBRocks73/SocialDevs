@@ -45,17 +45,9 @@ class LoginVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        
-               if let _ = KeychainWrapper.standard.string(forKey: key_userID) {
-        
-            
-            // add code here to check if user has a profile (can see using snapshot as NSNULL with profile name)
-            //perhaps use a guard klet statement with keychain and profile namw
-           
+        if let _ = KeychainWrapper.standard.string(forKey: key_userID) {
             performSegue(withIdentifier: "MainFeedVC", sender: nil)
             print("SGB: Succesful find of keychain UID")
-
         }
     }
     

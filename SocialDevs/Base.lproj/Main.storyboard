@@ -488,7 +488,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue-user-head-png-18" translatesAutoresizingMaskIntoConstraints="NO" id="TM7-Ke-uT2" customClass="CircleImage" customModule="SocialDevs" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue-user-head-png-18" translatesAutoresizingMaskIntoConstraints="NO" id="TM7-Ke-uT2" customClass="CircleImage" customModule="SocialDevs" customModuleProvider="target">
                                 <rect key="frame" x="60" y="120" width="200" height="200"/>
                                 <gestureRecognizers/>
                                 <constraints>

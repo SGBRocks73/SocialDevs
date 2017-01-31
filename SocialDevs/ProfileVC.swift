@@ -25,9 +25,10 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        imagePicker = UIImagePickerController()
+        
 
     }
     
@@ -39,6 +40,13 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 ProfileNameRef.updateChildValues(profileIDName)
         })
     }
+    
+    func uploadProfileURL(imageURL: String) {
+        let profileURL: Dictionary<String, AnyObject> = ["profilePicURL": imageURL as AnyObject]
+        let profileRef = DataService.ds.REF_USERS_CURRENT.child("userData")
+        profileRef.updateChildValues(profileURL)
+    }
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
@@ -77,6 +85,8 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                         print("SGB: Unable to upload profile picture to FIRStorage")
                     } else {
                         print("SGB: Successful upload of profile picture to FIRStorage")
+                        let downloadURL = metaData?.downloadURL()?.absoluteString
+                        self.uploadProfileURL(imageURL: downloadURL!)
                         self.dismiss(animated: true, completion: nil)
                     }
                 }
@@ -87,5 +97,5 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             
         }
     }
-   
+    
 }
