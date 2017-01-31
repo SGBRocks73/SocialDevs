@@ -12,6 +12,7 @@
 		DE2180B61E1F08D7000DFA7B /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2180B51E1F08D7000DFA7B /* PostCell.swift */; };
 		DE40C3F61E1DFE9A00D8B404 /* MainFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40C3F51E1DFE9A00D8B404 /* MainFeedVC.swift */; };
 		DE40C3F81E1E22B800D8B404 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE40C3F71E1E22B800D8B404 /* CircleImage.swift */; };
+		DE5E54EF1E406C4100EC6B40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE5E54ED1E406C4100EC6B40 /* Main.storyboard */; };
 		DE85AD241E1B62AA007ACC41 /* SGB Logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DE85AD231E1B62AA007ACC41 /* SGB Logo.jpg */; };
 		DEB780551E1C9CDE00E0DC83 /* Jitterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB780541E1C9CDE00E0DC83 /* Jitterable.swift */; };
 		DEB780571E1CA7E800E0DC83 /* Flashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB780561E1CA7E800E0DC83 /* Flashable.swift */; };
@@ -24,7 +25,6 @@
 		DEC5547A1E1F72430094AF82 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC554791E1F72430094AF82 /* Post.swift */; };
 		DEFF3FA11E1B12020021E0C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFF3FA01E1B12020021E0C5 /* AppDelegate.swift */; };
 		DEFF3FA31E1B12020021E0C5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFF3FA21E1B12020021E0C5 /* LoginVC.swift */; };
-		DEFF3FA61E1B12020021E0C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEFF3FA41E1B12020021E0C5 /* Main.storyboard */; };
 		DEFF3FA81E1B12020021E0C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEFF3FA71E1B12020021E0C5 /* Assets.xcassets */; };
 		DEFF3FAB1E1B12020021E0C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEFF3FA91E1B12020021E0C5 /* LaunchScreen.storyboard */; };
 		DEFF3FB31E1B12290021E0C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEFF3FB21E1B12290021E0C5 /* GoogleService-Info.plist */; };
@@ -37,6 +37,7 @@
 		DE2180B51E1F08D7000DFA7B /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		DE40C3F51E1DFE9A00D8B404 /* MainFeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFeedVC.swift; sourceTree = "<group>"; };
 		DE40C3F71E1E22B800D8B404 /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		DE5E54EE1E406C4100EC6B40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE85AD231E1B62AA007ACC41 /* SGB Logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "SGB Logo.jpg"; sourceTree = "<group>"; };
 		DEB780541E1C9CDE00E0DC83 /* Jitterable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jitterable.swift; sourceTree = "<group>"; };
 		DEB780561E1CA7E800E0DC83 /* Flashable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flashable.swift; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		DEFF3F9D1E1B12020021E0C5 /* SocialDevs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialDevs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFF3FA01E1B12020021E0C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DEFF3FA21E1B12020021E0C5 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		DEFF3FA51E1B12020021E0C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DEFF3FA71E1B12020021E0C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DEFF3FAA1E1B12020021E0C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DEFF3FAC1E1B12020021E0C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 				DEFF3FB51E1B17760021E0C5 /* View */,
 				DEFF3FB61E1B177C0021E0C5 /* Controller */,
 				DEFF3FA01E1B12020021E0C5 /* AppDelegate.swift */,
-				DEFF3FA41E1B12020021E0C5 /* Main.storyboard */,
+				DE5E54ED1E406C4100EC6B40 /* Main.storyboard */,
 				DEFF3FA91E1B12020021E0C5 /* LaunchScreen.storyboard */,
 				DEFF3FA71E1B12020021E0C5 /* Assets.xcassets */,
 				DEFF3FAC1E1B12020021E0C5 /* Info.plist */,
@@ -246,10 +246,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEFF3FB31E1B12290021E0C5 /* GoogleService-Info.plist in Resources */,
+				DE5E54EF1E406C4100EC6B40 /* Main.storyboard in Resources */,
 				DE85AD241E1B62AA007ACC41 /* SGB Logo.jpg in Resources */,
 				DEFF3FAB1E1B12020021E0C5 /* LaunchScreen.storyboard in Resources */,
 				DEFF3FA81E1B12020021E0C5 /* Assets.xcassets in Resources */,
-				DEFF3FA61E1B12020021E0C5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,10 +342,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DEFF3FA41E1B12020021E0C5 /* Main.storyboard */ = {
+		DE5E54ED1E406C4100EC6B40 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DEFF3FA51E1B12020021E0C5 /* Base */,
+				DE5E54EE1E406C4100EC6B40 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

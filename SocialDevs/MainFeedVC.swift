@@ -36,7 +36,18 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
         
-       
+        //code to reload tableview if a user changes their profile
+        
+        DataService.ds.REF_USERS_CURRENT.child("userData").observe(.value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    print("SGB: \(snap)")
+                }
+                self.tableView.reloadData()
+            }
+        })
+        
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             self.posts = []
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -104,21 +115,23 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-       
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             addImage.image = image
             imageSelected = true
         } else {
             print("SGB: No valid image added")
         }
-        
         imagePicker.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func imagePickerPressed(_ sender: Any) {
         present(imagePicker, animated: true, completion: nil)
     }
     
-  
+    @IBAction func profileBtnPressed(_ sender: Any) {
+        performSegue(withIdentifier: "ProfileVC", sender: nil)
+    }
+
     @IBAction func postBtnPressed(_ sender: Any) {
         guard let caption = captionField.text, caption != "" else {
             //using the guard statement - if it is NOT true do the code
@@ -142,12 +155,11 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                     print("SGB: Successful uplaod image to FIR Storage")
                     let downloadUrl = metaData?.downloadURL()?.absoluteString
                     self.uploadToFirebase(imageUrl: downloadUrl!)
-                    
                 }
             }
         }
     }
-    
+
     func uploadToFirebase(imageUrl: String) {
 
         let post : Dictionary<String, AnyObject> = [
@@ -155,20 +167,17 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             "imageURL": imageUrl as AnyObject,
             "likes": 0 as AnyObject,
         ]
-        
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
         firebasePost.setValue(post)
         captionField.text = ""
         imageSelected = false
         addImage.image = UIImage(named: "add-image")
-       
+        
         if let uid = KeychainWrapper.standard.string(forKey: key_userID) {
             let postUser: Dictionary<String, AnyObject> = [uid: true as AnyObject]
             firebasePost.child("usersKey").updateChildValues(postUser)
         }
-        self.posts = []
         self.tableView.reloadData()
-        
     }
     
     @IBAction func signOutBtnPressed(_ sender: AnyObject) {
@@ -176,7 +185,5 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         print("SGB: Removed keychain ID \(keychainResult)")
         try! FIRAuth.auth()?.signOut()
         dismiss(animated: true, completion: nil)
-    
     }
-
 }

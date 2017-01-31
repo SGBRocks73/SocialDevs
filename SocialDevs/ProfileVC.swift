@@ -29,6 +29,11 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         
+        profileName.text = ""
+        profileImg.image = UIImage(named: "blue-user-head-png-18")
+        profileImgSelected = false
+        
+
 
     }
     
@@ -91,10 +96,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                     }
                 }
             }
-            profileName.text = ""
-            profileImg.image = UIImage(named: "blue-user-head-png-18")
-            profileImgSelected = false
-            
         }
     }
     
