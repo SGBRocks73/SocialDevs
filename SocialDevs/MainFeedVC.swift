@@ -38,7 +38,7 @@ class MainFeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         //code to reload tableview if a user changes their profile
         
-        DataService.ds.REF_USERS_CURRENT.child("userData").observe(.value, with: { (snapshot) in
+        DataService.ds.REF_USERS_CURRENT.child("userData").child("userName").observe(.value, with: { (snapshot) in
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
